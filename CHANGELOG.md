@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - added `KIND` constant to `Interface` trait to detect invalid model, color format, and interface combinations
 - added `InvalidConfiguration` variant to `InitError` enum
 - added `update_address_window` in Model trait.
+- added feature-gated defmt support for Interface errors.
 
 ### Changed
 
