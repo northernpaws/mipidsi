@@ -12,6 +12,7 @@ documentation = "https://docs.rs/mipidsi"
 rust-version = "1.75"
 
 [dependencies]
+defmt = { version = "1.0.1", optional = true }
 embedded-graphics-core = "0.4.0"
 embedded-hal = "1.0.0"
 
@@ -25,6 +26,7 @@ embedded-graphics = "0.8.1"
 [features]
 default = ["batch"]
 batch = ["heapless"]
+defmt = ["dep:defmt", "embedded-hal/defmt-03"]
 
 [workspace]
 members = ["mipidsi-async"]
