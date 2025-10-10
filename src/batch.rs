@@ -69,6 +69,7 @@ type BlockColors<C> = heapless::Vec<C, MAX_BLOCK_SIZE>;
 
 /// Iterator for each Pixel Row in the pixel data. A Pixel Row consists of contiguous pixels on the same row.
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct RowIterator<C, P>
 where
     C: PixelColor,
@@ -90,6 +91,7 @@ where
 
 /// Iterator for each Pixel Block in the pixel data. A Pixel Block consists of contiguous Pixel Rows with the same start and end column number.
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct BlockIterator<C, R>
 where
     C: PixelColor,
