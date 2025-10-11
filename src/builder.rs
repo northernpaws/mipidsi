@@ -203,6 +203,7 @@ where
 
 /// Error returned by [`Builder::init`].
 #[derive(Debug)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum InitError<DI, P> {
     /// Error caused by the display interface.
     Interface(DI),
@@ -221,6 +222,7 @@ pub enum InitError<DI, P> {
 /// Specifics of [InitError::InvalidConfiguration] if configuration was found invalid
 #[non_exhaustive]
 #[derive(Debug)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum ConfigurationError {
     /// Unsupported interface kind.
     ///

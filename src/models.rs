@@ -202,6 +202,8 @@ pub trait Model {
 ///
 /// This error type is used internally by implementations of the [`Model`]
 /// trait.
+#[derive(Debug)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum ModelInitError<DiError> {
     /// Error caused by the display interface.
     Interface(DiError),

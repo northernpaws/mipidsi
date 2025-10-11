@@ -1,8 +1,5 @@
 use embedded_hal::digital::OutputPin;
 
-#[cfg(feature = "defmt")]
-use defmt::Format;
-
 use super::{Interface, InterfaceKind};
 
 /// This trait represents the data pins of a parallel bus.
@@ -146,8 +143,8 @@ generic_bus! {
 }
 
 /// Parallel interface error
-#[cfg_attr(feature = "defmt", derive(Format))]
 #[derive(Clone, Copy, Debug)]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum ParallelError<BUS, DC, WR> {
     /// Bus error
     Bus(BUS),
