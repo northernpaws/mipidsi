@@ -1,3 +1,6 @@
+#[cfg(feature = "defmt")]
+use defmt::{trace};
+
 use embedded_hal::digital::OutputPin;
 
 use super::{Interface, InterfaceKind};
@@ -191,6 +194,9 @@ where
         &mut self,
         word: BUS::Word,
     ) -> Result<(), ParallelError<BUS::Error, DC::Error, WR::Error>> {
+        #[cfg(feature = "defmt")]
+        trace!("   send_word {:#04X}", word);
+
         self.wr.set_low().map_err(ParallelError::Wr)?;
         self.bus.set_value(word).map_err(ParallelError::Bus)?;
         self.wr.set_high().map_err(ParallelError::Wr)
@@ -210,6 +216,9 @@ where
     const KIND: InterfaceKind = BUS::KIND;
 
     fn send_command(&mut self, command: u8, args: &[u8]) -> Result<(), Self::Error> {
+        #[cfg(feature = "defmt")]
+        trace!("send_command {:X} {=[u8]:#04x}", command, args);
+
         self.dc.set_low().map_err(ParallelError::Dc)?;
         self.send_word(BUS::Word::from(command))?;
         self.dc.set_high().map_err(ParallelError::Dc)?;
@@ -225,6 +234,8 @@ where
         &mut self,
         pixels: impl IntoIterator<Item = [Self::Word; N]>,
     ) -> Result<(), Self::Error> {
+        #[cfg(feature = "defmt")]
+        trace!("send_pixels");
         for pixel in pixels {
             for word in pixel {
                 self.send_word(word)?;
