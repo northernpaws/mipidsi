@@ -194,9 +194,6 @@ where
         &mut self,
         word: BUS::Word,
     ) -> Result<(), ParallelError<BUS::Error, DC::Error, WR::Error>> {
-        #[cfg(feature = "defmt")]
-        trace!("   send_word {:#04X}", word);
-
         self.wr.set_low().map_err(ParallelError::Wr)?;
         self.bus.set_value(word).map_err(ParallelError::Bus)?;
         self.wr.set_high().map_err(ParallelError::Wr)
