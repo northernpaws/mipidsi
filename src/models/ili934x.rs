@@ -141,6 +141,10 @@ where
     //Display inversion on  
     di.write_raw(0x21, &[]).unwrap();
 
+    // Tearing effect out enable
+    // Remove when done testing.
+    di.write_raw(0x35, &[0b00000001]).unwrap();
+
     // Exit Sleep 
     //
     // Delay required after because controller loads manufacture settings
