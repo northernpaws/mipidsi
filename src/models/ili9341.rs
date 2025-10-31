@@ -18,6 +18,8 @@ pub struct ILI9341Rgb666;
 impl Model for ILI9341Rgb565 {
     type ColorFormat = Rgb565;
     const FRAMEBUFFER_SIZE: (u16, u16) = (240, 320);
+    const RESET_DURATION: u32 = 10000;
+
 
     fn init<DELAY, DI>(
         &mut self,
